@@ -10,8 +10,12 @@ Specifically, it comes with:
     * A process and script to scrape the software versions of each tool you run (for MultiQC and logging)
     * Logging and HTML e-mail functionality to report pipeline configuration and software versions
     * Automatic HTML conversion and results output of pipeline "output" documentation markdown file
+* Reference Genome implementation
+    * Configuration files with paths to [AWS iGenomes](https://ewels.github.io/AWS-iGenomes/)
+    * Example pipeline setup to handle a Fasta reference file using `--genome [genome ID]``
 * Documentation
     * Pre-written general documentation to help your users get started with Nextflow and your pipeline.
+    * Covers installation, usage, output, troubleshooting, reference genomes and configuration.
 * Robust configuration setup
     * Simple inheritance hierarchy with builtin functions to limit the resources required
 * Skeleton files for Docker image generation

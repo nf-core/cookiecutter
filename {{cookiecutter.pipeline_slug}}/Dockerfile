@@ -37,6 +37,6 @@ RUN curl -fsSL http://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v
 # Install MultiQC
 RUN pip install git+git://github.com/ewels/MultiQC.git
 
-# Create root directories for UPPMAX and c3se hebbe
+# Create root directories for common Swedish HPC systems
 RUN mkdir /pica /lupus /crex1 /crex2 /proj /scratch /sw \
           /c3se /local /apps
