@@ -6,11 +6,10 @@
     "pipeline_url": "https://github.com/{{ cookiecutter.github_repo }}",
     "dockerhub_slug": "{{ cookiecutter.pipeline_name.lower().replace(' ', '-') }}",
     "author_name": "Your Name",
-    "author_email": "{{ cookiecutter.author_email.lower().replace(' ', '_') }}@gmail.com",
-    "author_github_username": "@{{ cookiecutter.author_email.lower().replace(' ', '_') }}",
+    "author_email": "{{ cookiecutter.author_name.lower().replace(' ', '.') }}@gmail.com",
+    "author_github_username": "{{ cookiecutter.author_name.lower().replace(' ', '') }}",
     "author_homepage": "https://github.com/{{ cookiecutter.author_github_username }}",
     "author_affiliation": "Your Institute",
-    "author_affiliation_homepage": "http://some_workplace.com",
-    "version": "0.1.0",
-    "mit_licence": "y"
+    "author_affiliation_homepage": "http://www.{{ cookiecutter.author_affiliation.lower().replace(' ', '') }}.com",
+    "version": "0.1.0"
 }
