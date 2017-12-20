@@ -1,0 +1,15 @@
+{
+    "pipeline_name": "NF-Something",
+    "pipeline_short_description": "This pipeline takes some data and does something with it.",
+    "github_repo": "username/{{ cookiecutter.pipeline_name.replace(' ', '-') }}",
+    "pipeline_url": "https://github.com/{{ cookiecutter.github_repo }}",
+    "dockerhub_slug": "{{ cookiecutter.pipeline_name.lower().replace(' ', '-') }}",
+    "author_name": "Your Name",
+    "author_email": "{{ cookiecutter.pipeline_name.lower().replace(' ', '_') }}@gmail.com",
+    "author_github_username": "@{{ cookiecutter.pipeline_name.lower().replace(' ', '_') }}",
+    "author_homepage": "https://github.com/{{ cookiecutter.author_github_username }}",
+    "author_affiliation": "Your Institute",
+    "author_affiliation_homepage": "http://some_workplace.com",
+    "version": "0.1.0",
+    "mit_licence": "y"
+}
