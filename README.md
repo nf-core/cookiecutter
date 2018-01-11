@@ -80,6 +80,8 @@ Once you're happy that your pipeline works, make a release on GitHub! This tags 
 
 Remember to update the `version` variable in your main script as you keep working after this.
 
+If you can, please consider releasing your new pipeline as open source software! You can copy the `LICENCE.md` file from this repository into your root directory to release under the MIT licence.
+
 ### Celebrate!
 That's it! You've just made a super cool new analysis pipeline in very little time! Congratulations!
 
