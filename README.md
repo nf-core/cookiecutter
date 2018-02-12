@@ -1,5 +1,8 @@
-# NGI-NFcookiecutter
-A template [Nextflow](https://www.nextflow.io/) analysis pipeline to built using [Cookiecutter](https://github.com/audreyr/cookiecutter).
+<img src="https://nf-core.github.io/assets/logo/nf-core-logo.png" width="400">
+
+# [nf-core/cookiecutter](https://github.com/nf-core/cookiecutter)
+
+**A template [Nextflow](https://www.nextflow.io/) analysis pipeline to built using [Cookiecutter](https://github.com/audreyr/cookiecutter).**
 
 Run `cookiecutter` with this repository to create a new Nextflow pipeline built with the details that you add when prompted. This gives a quick route to a solid pipeline that uses lots of Nextflow best-practices and nice features.
 
@@ -33,7 +36,7 @@ pip install cookiecutter
 Then run the wizard with this repository:
 
 ```
-cookiecutter https://github.com/ewels/NGI-NFcookiecutter.git
+cookiecutter https://github.com/nf-core/cookiecutter.git
 ```
 
 ### Step 2: Publish to GitHub
@@ -47,7 +50,7 @@ git init
 Add your generated files, commit and push to GitHub:
 ```
 git add .
-git commit -m "First commit, based on NGI-NFcookiecutter template"
+git commit -m "First commit, based on nf-core/cookiecutter template"
 git remote add origin [your github remote url]
 git push -u origin master
 ```
@@ -80,15 +83,10 @@ Once you're happy that your pipeline works, make a release on GitHub! This tags 
 
 Remember to update the `version` variable in your main script as you keep working after this.
 
+If you can, please consider releasing your new pipeline as open source software! You can copy the `LICENCE.md` file from this repository into your root directory to release under the MIT licence.
+
 ### Celebrate!
 That's it! You've just made a super cool new analysis pipeline in very little time! Congratulations!
 
 ## Credits
 This template and most of the scripts within were written by Phil Ewels ([@ewels](https://github.com/ewels)) at the [National Genomics Infrastructure](https://portal.scilifelab.se/genomics/), part of [SciLifeLab](http://www.scilifelab.se/) in Stockholm, Sweden.
-
----
-
-[![SciLifeLab](https://raw.githubusercontent.com/SciLifeLab/NGI-RNAseq/master/docs/images/SciLifeLab_logo.png)](http://www.scilifelab.se/)
-[![National Genomics Infrastructure](https://raw.githubusercontent.com/SciLifeLab/NGI-RNAseq/master/docs/images/NGI_logo.png)](https://ngisweden.scilifelab.se/)
-
----
