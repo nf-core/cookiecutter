@@ -5,6 +5,8 @@
     "github_repo": "username/{{ cookiecutter.pipeline_name.replace(' ', '-') }}",
     "pipeline_url": "https://github.com/{{ cookiecutter.github_repo }}",
     "dockerhub_slug": "{{ cookiecutter.pipeline_name.lower().replace(' ', '-') }}",
+    "copyright_year": "MIT License copyright year (i.e. 2018)",
+    "copyright_holder": "MIT license copyright holder (your name/institutiion)",
     "author_name": "Your Name",
     "author_email": "{{ cookiecutter.author_name.lower().replace(' ', '.') }}@gmail.com",
     "author_github_username": "{{ cookiecutter.author_name.lower().replace(' ', '') }}",
