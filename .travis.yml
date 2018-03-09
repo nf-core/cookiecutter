@@ -20,4 +20,4 @@ install:
 
 script:
    - cookiecutter . --no-input
-   - nf-core lint .
+   - nf-core lint nf-something
