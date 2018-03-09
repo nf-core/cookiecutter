@@ -191,7 +191,6 @@ process fastqc {
  * STEP 2 - MultiQC
  */
 process multiqc {
-    tag "$prefix"
     publishDir "${params.outdir}/MultiQC", mode: 'copy'
 
     input:
@@ -202,10 +201,8 @@ process multiqc {
     output:
     file "*multiqc_report.html" into multiqc_report
     file "*_data"
-    val prefix into multiqc_prefix
 
     script:
-    prefix = fastqc[0].toString() - '_fastqc.html' - 'fastqc/'
     rtitle = custom_runName ? "--title \"$custom_runName\"" : ''
     rfilename = custom_runName ? "--filename " + custom_runName.replaceAll('\\W','_').replaceAll('_+','_') + "_multiqc_report" : ''
     """
