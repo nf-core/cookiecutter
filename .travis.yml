@@ -19,5 +19,5 @@ install:
    - cd ${TRAVIS_BUILD_DIR}
 
 script:
-   - cookiecutter https://github.com/nf-core/cookiecutter.git
+   - cookiecutter . --no-input
    - nf-core lint .
