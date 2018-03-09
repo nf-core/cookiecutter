@@ -48,7 +48,6 @@ def helpMessage() {
  */
 
 // Show help emssage
-params.help = false
 if (params.help){
     helpMessage()
     exit 0
@@ -58,8 +57,6 @@ if (params.help){
 params.name = false
 params.fasta = params.genome ? params.genomes[ params.genome ].fasta ?: false : false
 params.multiqc_config = "$baseDir/conf/multiqc_config.yaml"
-params.reads = "data/*{1,2}.fastq.gz"
-params.outdir = './results'
 params.email = false
 params.plaintext_email = false
 
@@ -79,8 +76,6 @@ if ( params.fasta ){
 //
 
 
-
-
 // Has the run name been specified by the user?
 //  this has the bonus effect of catching both -name and --name
 custom_runName = params.name
@@ -91,7 +86,6 @@ if( !(workflow.runName ==~ /[a-z]+_[a-z]+/) ){
 /*
  * Create a channel for input read files
  */
-params.singleEnd = false
 Channel
     .fromFilePairs( params.reads, size: params.singleEnd ? 1 : 2 )
     .ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}\nNB: Path needs to be enclosed in quotes!\nNB: Path requires at least one * wildcard!\nIf this is single-end data, please specify --singleEnd on the command line." }
