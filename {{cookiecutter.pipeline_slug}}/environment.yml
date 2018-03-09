@@ -1,0 +1,7 @@
+name: nfcore-{{ cookiecutter.pipeline_name }}
+dependencies:
+  - fastqc=0.11.5
+  - multiqc=1.5a
+channels:
+  - conda-forge
+  - bioconda
