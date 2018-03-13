@@ -107,7 +107,7 @@ Note that you can use the same configuration setup to save sets of reference fil
 
 The syntax for this reference configuration is as follows:
 
-```groovy
+```nextflow
 params {
   genomes {
     'GRCh37' {
@@ -160,7 +160,7 @@ Specify the path to a specific config file (this is a core NextFlow command).
 
 Note - you can use this to override defaults. For example, you can specify a config file using `-c` that contains the following:
 
-```groovy
+```nextflow
 process.$multiqc.module = []
 ```
 

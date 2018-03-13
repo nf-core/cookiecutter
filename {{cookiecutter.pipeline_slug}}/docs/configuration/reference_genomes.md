@@ -11,7 +11,7 @@ Note that this genome key can also be specified in a config file if you always u
 
 To use this system, add paths to your config file using the following template:
 
-```groovy
+```nextflow
 params {
   genomes {
     'YOUR-ID' {
@@ -35,7 +35,7 @@ If possible, we recommend making this resource available on your cluster. We hav
 
 To add iGenomes to your config file, add the following line to the end of your config file:
 
-```groovy
+```nextflow
 includeConfig '/path/to/{{ cookiecutter.pipeline_name }}/conf/igenomes.config'
 ```
 

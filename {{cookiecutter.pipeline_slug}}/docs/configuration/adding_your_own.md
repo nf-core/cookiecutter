@@ -13,7 +13,7 @@ By default, pipeline uses the `local` Nextflow executor - in other words, all jo
 
 To specify your cluster environment, add the following line to your config file:
 
-```groovy
+```nextflow
 process {
   executor = 'YOUR_SYSTEM_TYPE'
 }
@@ -23,7 +23,7 @@ Many different cluster types are supported by Nextflow. For more information, pl
 
 Note that you may need to specify cluster options, such as a project or queue. To do so, use the `clusterOptions` config option:
 
-```groovy
+```nextflow
 process {
   executor = 'SLURM'
   clusterOptions = '-A myproject'
@@ -52,7 +52,7 @@ The public docker images are tagged with the same version numbers as the code, w
 
 To add docker support to your own config file (instead of using the `docker` profile, which runs locally), add the following:
 
-```groovy
+```nextflow
 docker {
   enabled = true
 }
@@ -72,7 +72,7 @@ To use the singularity image for a single run, use `-with-singularity 'docker://
 
 To specify singularity usage in your pipeline config file, add the following:
 
-```groovy
+```nextflow
 singularity {
   enabled = true
 }
