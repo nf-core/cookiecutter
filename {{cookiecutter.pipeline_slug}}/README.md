@@ -2,7 +2,7 @@
 {{ cookiecutter.pipeline_short_description }}
 
 [![Build Status](https://travis-ci.org/{{ cookiecutter.github_repo }}.svg?branch=master)](https://travis-ci.org/{{ cookiecutter.github_repo }})
-[![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A50.24.0-brightgreen.svg)](https://www.nextflow.io/)
+[![Nextflow](https://img.shields.io/badge/nextflow-%E2%89%A50.27.0-brightgreen.svg)](https://www.nextflow.io/)
 
 
 ### Introduction
