@@ -1,4 +1,4 @@
-name: 'nfcore-nf-"{{ cookiecutter.pipeline_name }}"'
+name: 'nfcore-"{{ cookiecutter.pipeline_name }}"'
 channels:
   - defaults
   - conda-forge
