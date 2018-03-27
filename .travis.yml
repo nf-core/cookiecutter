@@ -14,10 +14,10 @@ install:
    - cd /tmp/nf-core-tools
    - pip install --user -e .
    # Install cookiecutter
-   - pip install cookiecutter
+   - pip install --user cookiecutter
    # Reset
    - cd ${TRAVIS_BUILD_DIR}
 
 script:
-   - cookiecutter https://github.com/nf-core/cookiecutter.git
-   - nf-core lint .
+   - cookiecutter . --no-input
+   - nf-core lint nf-something

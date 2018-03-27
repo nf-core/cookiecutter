@@ -1,7 +1,5 @@
 #!/usr/bin/env nextflow
 /*
-vim: syntax=groovy
--*- mode: groovy;-*-
 ========================================================================================
                          {{ cookiecutter.pipeline_name }}
 ========================================================================================
@@ -17,7 +15,7 @@ vim: syntax=groovy
 def helpMessage() {
     log.info"""
     =========================================
-     {{ cookiecutter.pipeline_name }} v${version}
+     {{ cookiecutter.pipeline_name }} v${params.version}
     =========================================
     Usage:
 
@@ -43,17 +41,11 @@ def helpMessage() {
     """.stripIndent()
 }
 
-
-
 /*
  * SET UP CONFIGURATION VARIABLES
  */
 
-// Pipeline version
-version = '{{ cookiecutter.version }}'
-
 // Show help emssage
-params.help = false
 if (params.help){
     helpMessage()
     exit 0
@@ -63,8 +55,6 @@ if (params.help){
 params.name = false
 params.fasta = params.genome ? params.genomes[ params.genome ].fasta ?: false : false
 params.multiqc_config = "$baseDir/conf/multiqc_config.yaml"
-params.reads = "data/*{1,2}.fastq.gz"
-params.outdir = './results'
 params.email = false
 params.plaintext_email = false
 
@@ -84,8 +74,6 @@ if ( params.fasta ){
 //
 
 
-
-
 // Has the run name been specified by the user?
 //  this has the bonus effect of catching both -name and --name
 custom_runName = params.name
@@ -96,7 +84,6 @@ if( !(workflow.runName ==~ /[a-z]+_[a-z]+/) ){
 /*
  * Create a channel for input read files
  */
-params.singleEnd = false
 Channel
     .fromFilePairs( params.reads, size: params.singleEnd ? 1 : 2 )
     .ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}\nNB: Path needs to be enclosed in quotes!\nNB: Path requires at least one * wildcard!\nIf this is single-end data, please specify --singleEnd on the command line." }
@@ -105,7 +92,7 @@ Channel
 
 // Header log info
 log.info "========================================="
-log.info " {{ cookiecutter.pipeline_name }} v${version}"
+log.info " {{ cookiecutter.pipeline_name }} v${params.version}"
 log.info "========================================="
 def summary = [:]
 summary['Run Name']     = custom_runName ?: workflow.runName
@@ -131,14 +118,13 @@ log.info "========================================="
 
 // Check that Nextflow version is up to date enough
 // try / throw / catch works for NF versions < 0.25 when this was implemented
-nf_required_version = '0.25.0'
 try {
-    if( ! nextflow.version.matches(">= $nf_required_version") ){
+    if( ! nextflow.version.matches(">= $params.nf_required_version") ){
         throw GroovyException('Nextflow version too old')
     }
 } catch (all) {
     log.error "====================================================\n" +
-              "  Nextflow version $nf_required_version required! You are running v$workflow.nextflow.version.\n" +
+              "  Nextflow version $params.nf_required_version required! You are running v$workflow.nextflow.version.\n" +
               "  Pipeline execution will continue, but things may break.\n" +
               "  Please run `nextflow self-update` to update Nextflow.\n" +
               "============================================================"
@@ -155,7 +141,7 @@ process get_software_versions {
 
     script:
     """
-    echo $version > v_pipeline.txt
+    echo $params.version > v_pipeline.txt
     echo $workflow.nextflow.version > v_nextflow.txt
     fastqc --version > v_fastqc.txt
     multiqc --version > v_multiqc.txt
@@ -191,7 +177,6 @@ process fastqc {
  * STEP 2 - MultiQC
  */
 process multiqc {
-    tag "$prefix"
     publishDir "${params.outdir}/MultiQC", mode: 'copy'
 
     input:
@@ -202,10 +187,8 @@ process multiqc {
     output:
     file "*multiqc_report.html" into multiqc_report
     file "*_data"
-    val prefix into multiqc_prefix
 
     script:
-    prefix = fastqc[0].toString() - '_fastqc.html' - 'fastqc/'
     rtitle = custom_runName ? "--title \"$custom_runName\"" : ''
     rfilename = custom_runName ? "--filename " + custom_runName.replaceAll('\\W','_').replaceAll('_+','_') + "_multiqc_report" : ''
     """
@@ -247,7 +230,7 @@ workflow.onComplete {
       subject = "[{{ cookiecutter.pipeline_name }}] FAILED: $workflow.runName"
     }
     def email_fields = [:]
-    email_fields['version'] = version
+    email_fields['version'] = params.version
     email_fields['runName'] = custom_runName ?: workflow.runName
     email_fields['success'] = workflow.success
     email_fields['dateComplete'] = workflow.complete

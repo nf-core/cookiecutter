@@ -5,13 +5,12 @@
     "github_repo": "username/{{ cookiecutter.pipeline_name.replace(' ', '-') }}",
     "pipeline_url": "https://github.com/{{ cookiecutter.github_repo }}",
     "dockerhub_slug": "{{ cookiecutter.pipeline_name.lower().replace(' ', '-') }}",
-    "copyright_year": "MIT License copyright year (i.e. 2018)",
-    "copyright_holder": "MIT license copyright holder (your name/institutiion)",
     "author_name": "Your Name",
     "author_email": "{{ cookiecutter.author_name.lower().replace(' ', '.') }}@gmail.com",
     "author_github_username": "{{ cookiecutter.author_name.lower().replace(' ', '') }}",
     "author_homepage": "https://github.com/{{ cookiecutter.author_github_username }}",
     "author_affiliation": "Your Institute",
     "author_affiliation_homepage": "http://www.{{ cookiecutter.author_affiliation.lower().replace(' ', '') }}.com",
+    "copyright_holder": "{{ cookiecutter.author_name }}",
     "version": "0.1.0"
 }
