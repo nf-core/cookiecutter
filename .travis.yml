@@ -20,4 +20,5 @@ install:
 
 script:
    - cookiecutter . --no-input
+   - ls -l
    - nf-core lint nf-example/
