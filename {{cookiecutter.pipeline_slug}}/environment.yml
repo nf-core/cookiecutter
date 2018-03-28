@@ -1,4 +1,4 @@
-name: {{ cookiecutter.pipeline_slug.replace('/', '-') }}
+name: nfcore-{{ cookiecutter.pipeline_slug.replace('/', '-') }}
 channels:
   - defaults
   - conda-forge
