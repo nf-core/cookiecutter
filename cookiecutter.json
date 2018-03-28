@@ -2,7 +2,7 @@
     "pipeline_name": "NF-Something",
     "pipeline_slug": "{{ cookiecutter.pipeline_name.lower().replace(' ', '-') }}",
     "pipeline_short_description": "This pipeline takes some data and does something with it.",
-    "github_repo": "username/{{ cookiecutter.pipeline_name.replace(' ', '-') }}",
+    "github_repo": "nf-core/{{ cookiecutter.pipeline_name.replace(' ', '-') }}",
     "pipeline_url": "https://github.com/{{ cookiecutter.github_repo }}",
     "dockerhub_slug": "{{ cookiecutter.pipeline_name.lower().replace(' ', '-') }}",
     "author_name": "Your Name",
