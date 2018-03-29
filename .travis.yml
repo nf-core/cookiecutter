@@ -1,5 +1,5 @@
 sudo: required
-language: java
+language: python
 jdk: openjdk8
 python: "3.6"
 
@@ -12,9 +12,9 @@ install:
    # Install nf-core/tools
    - git clone https://github.com/nf-core/tools.git /tmp/nf-core-tools
    - cd /tmp/nf-core-tools
-   - pip install --user -e .
+   - pip install .
    # Install cookiecutter
-   - pip install --user cookiecutter
+   - pip install cookiecutter
    # Reset
    - cd ${TRAVIS_BUILD_DIR}
 
