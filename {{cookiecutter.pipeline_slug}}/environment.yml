@@ -1,9 +1,9 @@
-name: nfcore-{{ cookiecutter.pipeline_slug }}
+name: {{ cookiecutter.pipeline_slug }}
 channels:
   - defaults
   - conda-forge
   - bioconda
 dependencies:
-  - conda-forge::openjdk # Needed for FastQC docker - see bioconda/bioconda-recipes#5026
-  - fastqc=0.11.5
-  - multiqc=1.4
+  - conda-forge::openjdk=8.0.144  # Needed for FastQC docker - see bioconda/bioconda-recipes#5026
+  - fastqc=0.11.7
+  - multiqc=1.5
