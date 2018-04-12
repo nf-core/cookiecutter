@@ -1,4 +1,4 @@
-name: {{ cookiecutter.pipeline_slug }}
+name: {{ cookiecutter.pipeline_slug }}-{{ cookiecutter.version }}
 channels:
   - defaults
   - conda-forge
