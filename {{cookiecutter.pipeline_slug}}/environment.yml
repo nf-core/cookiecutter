@@ -4,6 +4,5 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - conda-forge::openjdk=8.0.144  # Needed for FastQC docker - see bioconda/bioconda-recipes#5026
   - fastqc=0.11.7
   - multiqc=1.5
