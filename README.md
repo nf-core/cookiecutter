@@ -1,4 +1,4 @@
-<img src="https://nf-core.github.io/assets/logo/nf-core-logo.png" width="400">
+<img src="nf-core-logo.png" width="400">
 
 # [nf-core/cookiecutter](https://github.com/nf-core/cookiecutter)
 
