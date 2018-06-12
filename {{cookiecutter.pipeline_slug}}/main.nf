@@ -84,17 +84,41 @@ if( !(workflow.runName ==~ /[a-z]+_[a-z]+/) ){
 /*
  * Create a channel for input read files
  */
-Channel
-    .fromFilePairs( params.reads, size: params.singleEnd ? 1 : 2 )
-    .ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}\nNB: Path needs to be enclosed in quotes!\nNB: Path requires at least one * wildcard!\nIf this is single-end data, please specify --singleEnd on the command line." }
-    .into { read_files_fastqc }
+ if(params.readPaths){
+     if(params.singleEnd){
+         Channel
+             .from(params.readPaths)
+             .map { row -> [ row[0], [file(row[1][0])]] }
+             .ifEmpty { exit 1, "params.readPaths was empty - no input files supplied" }
+             .into { read_files_fastqc; read_files_trimming }
+     } else {
+         Channel
+             .from(params.readPaths)
+             .map { row -> [ row[0], [file(row[1][0]), file(row[1][1])]] }
+             .ifEmpty { exit 1, "params.readPaths was empty - no input files supplied" }
+             .into { read_files_fastqc; read_files_trimming }
+     }
+ } else {
+     Channel
+         .fromFilePairs( params.reads, size: params.singleEnd ? 1 : 2 )
+         .ifEmpty { exit 1, "Cannot find any reads matching: ${params.reads}\nNB: Path needs to be enclosed in quotes!\nIf this is single-end data, please specify --singleEnd on the command line." }
+         .into { read_files_fastqc; read_files_trimming }
+ }
 
 
 // Header log info
-log.info "========================================="
-log.info " {{ cookiecutter.pipeline_name }} v${params.version}"
-log.info "========================================="
+log.info """=======================================================
+                                          ,--./,-.
+          ___     __   __   __   ___     /,-._.--~\'
+    |\\ | |__  __ /  ` /  \\ |__) |__         }  {
+    | \\| |       \\__, \\__/ |  \\ |___     \\`-._,-`-,
+                                          `._,._,\'
+
+{{ cookiecutter.pipeline_name }} v${params.version}"
+======================================================="""
 def summary = [:]
+summary['Pipeline Name']  = '{{ cookiecutter.pipeline_name }}'
+summary['Pipeline Version'] = params.version
 summary['Run Name']     = custom_runName ?: workflow.runName
 summary['Reads']        = params.reads
 summary['Fasta Ref']    = params.fasta
@@ -104,11 +128,13 @@ summary['Max CPUs']     = params.max_cpus
 summary['Max Time']     = params.max_time
 summary['Output dir']   = params.outdir
 summary['Working dir']  = workflow.workDir
-summary['Container']    = workflow.container
-if(workflow.revision) summary['Pipeline Release'] = workflow.revision
+summary['Container Engine'] = workflow.containerEngine
+if(workflow.containerEngine) summary['Container'] = workflow.container
 summary['Current home']   = "$HOME"
 summary['Current user']   = "$USER"
 summary['Current path']   = "$PWD"
+summary['Working dir']    = workflow.workDir
+summary['Output dir']     = params.outdir
 summary['Script dir']     = workflow.projectDir
 summary['Config Profile'] = workflow.profile
 if(params.email) summary['E-mail Address'] = params.email
@@ -248,10 +274,9 @@ workflow.onComplete {
     if(workflow.repository) email_fields['summary']['Pipeline repository Git URL'] = workflow.repository
     if(workflow.commitId) email_fields['summary']['Pipeline repository Git Commit'] = workflow.commitId
     if(workflow.revision) email_fields['summary']['Pipeline Git branch/tag'] = workflow.revision
-    if(workflow.container) email_fields['summary']['Docker image'] = workflow.container
-    email_fields['software_versions'] = software_versions
-    email_fields['software_versions']['Nextflow Build'] = workflow.nextflow.build
-    email_fields['software_versions']['Nextflow Compile Timestamp'] = workflow.nextflow.timestamp
+    email_fields['summary']['Nextflow Version'] = workflow.nextflow.version
+    email_fields['summary']['Nextflow Build'] = workflow.nextflow.build
+    email_fields['summary']['Nextflow Compile Timestamp'] = workflow.nextflow.timestamp
 
     // Render the TXT template
     def engine = new groovy.text.GStringTemplateEngine()
