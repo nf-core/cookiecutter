@@ -109,6 +109,7 @@ if(workflow.revision) summary['Pipeline Release'] = workflow.revision
 summary['Current home']   = "$HOME"
 summary['Current user']   = "$USER"
 summary['Current path']   = "$PWD"
+summary['Container Engine'] = workflow.containerEngine
 summary['Script dir']     = workflow.projectDir
 summary['Config Profile'] = workflow.profile
 if(params.email) summary['E-mail Address'] = params.email
