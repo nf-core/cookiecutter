@@ -41,3 +41,9 @@ unzip master.zip -d /my-pipelines/
 cd /my_data/
 nextflow run /my-pipelines/{{ cookiecutter.pipeline_slug }}-master
 ```
+
+If you are running the pipeline on an offline resource (e.g. a private cluster without internet connection available upon pipeline running), you may specify an environment variable as above to avoid download failure messages when starting the pipeline. Just add this to your environment or profile as above:
+
+```bash
+NXF_OFFLINE='TRUE'
+``` 
