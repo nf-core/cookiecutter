@@ -9,6 +9,13 @@ It is recommended to limit the Nextflow Java virtual machines memory. We recomme
 NXF_OPTS='-Xms1g -Xmx4g'
 ```
 
+If you are running the pipeline on an offline resource (e.g. a private cluster without internet connection available upon pipeline running), you may specify an environment variable as above to avoid download failure messages when starting the pipeline. Just add this to your environment or profile as above:
+
+```bash
+NXF_OFFLINE='TRUE'
+``` 
+
+
 ## Running the pipeline
 The typical command for running the pipeline is as follows:
 ```bash
