@@ -42,8 +42,8 @@ cd /my_data/
 nextflow run /my-pipelines/{{ cookiecutter.pipeline_slug }}-master
 ```
 
-If you are running the pipeline on an offline resource (e.g. a private cluster without internet connection available upon pipeline running), you may specify an environment variable as above to avoid download failure messages when starting the pipeline. Just add this to your environment or profile as above:
+To stop nextflow from looking for updates online, you can tell it to run in offline mode by specifying the following environment variable in your ~/.bashrc file:
 
 ```bash
-NXF_OFFLINE='TRUE'
+export NXF_OFFLINE='TRUE'
 ``` 
