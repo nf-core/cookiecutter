@@ -9,6 +9,8 @@ It is recommended to limit the Nextflow Java virtual machines memory. We recomme
 NXF_OPTS='-Xms1g -Xmx4g'
 ```
 
+
+
 ## Running the pipeline
 The typical command for running the pipeline is as follows:
 ```bash
