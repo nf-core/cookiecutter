@@ -26,7 +26,7 @@ def helpMessage() {
     Mandatory arguments:
       --reads                       Path to input data (must be surrounded with quotes)
       --genome                      Name of iGenomes reference
-      -profile                      Hardware config to use. docker / aws
+      -profile                      Hardware config to use. docker / awsbatch
 
     Options:
       --singleEnd                   Specifies that the input is single end reads
@@ -79,6 +79,12 @@ if ( params.fasta ){
 custom_runName = params.name
 if( !(workflow.runName ==~ /[a-z]+_[a-z]+/) ){
   custom_runName = workflow.runName
+}
+
+//Check workDir/outdir paths to be S3 buckets if running on AWSBatch
+//related: https://github.com/nextflow-io/nextflow/issues/813
+if( workflow.profile == 'awsbatch') {
+    if(!workflow.workDir.startsWith('s3:') || !params.outdir.startsWith('s3:')) exit 1, "Workdir or Outdir not on S3 - specify S3 Buckets for each to run on AWSBatch!"
 }
 
 /*
