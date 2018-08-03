@@ -26,7 +26,7 @@ def helpMessage() {
     Mandatory arguments:
       --reads                       Path to input data (must be surrounded with quotes)
       --genome                      Name of iGenomes reference
-      -profile                      Hardware config to use. docker / awsbatch
+      -profile                      Configuration profile to use. docker / awsbatch
 
     Options:
       --singleEnd                   Specifies that the input is single end reads
