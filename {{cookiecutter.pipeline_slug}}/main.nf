@@ -144,8 +144,8 @@ summary['Output dir']     = params.outdir
 summary['Script dir']     = workflow.projectDir
 summary['Config Profile'] = workflow.profile
 if(workflow.profile == 'awsbatch'){
-   summary['AWS Region' = params.awsregion]
-   summary['AWS Queue' = params.awsqueue]
+   summary['AWS Region'] = params.awsregion
+   summary['AWS Queue'] = params.awsqueue
 } 
 if(params.email) summary['E-mail Address'] = params.email
 log.info summary.collect { k,v -> "${k.padRight(15)}: $v" }.join("\n")
