@@ -1,3 +1,13 @@
+
+# DEPRECIATED!
+
+This repository is depreciated and has now been archived.
+Instead of using the cookiecutter command line tool to make new pipelines, please use the [nf-core/tools](https://github.com/nf-core/tools) package instead.
+
+The above package now has the command `nf-core create` which basically does the same as described below (but with some added features). Please use that instead!
+
+---
+
 <img src="nf-core-logo.png" width="400">
 
 # [nf-core/cookiecutter](https://github.com/nf-core/cookiecutter)
